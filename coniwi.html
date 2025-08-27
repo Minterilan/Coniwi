@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>359Growth - System & Offers</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5; /* Soft background */
+            color: #333;
+            scroll-behavior: smooth;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 40px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+        }
+        h1, h2, h3, h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        h1 {
+            text-align: center;
+            color: #2980b9;
+            font-size: 2.8em;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 20px;
+        }
+        .hero-tagline {
+            text-align: center;
+            font-size: 2em; /* Adjusted size for single line */
+            margin-bottom: 20px; /* Adjusted space below */
+            color: #34495e; /* A slightly darker color for prominence */
+            font-weight: 300; /* Lighter weight for modern look */
+        }
+        h2 {
+            font-size: 2.2em;
+            color: #34495e;
+            margin-bottom: 18px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #2980b9;
+            border-radius: 2px;
+        }
+        h3 {
+            font-size: 1.6em;
+            color: #2980b9;
+            margin-bottom: 10px;
+        }
+        h4 {
+            font-size: 1.2em;
+            color: #555;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+            margin-top: 20px;
+        }
+        p {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+        .section {
+            margin-bottom: 35px;
+            padding: 25px;
+            background-color: #f9f9f9;
+            border-left: 6px solid #2980b9;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .section ol, .section ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        .section ol li, .section ul li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .offer {
+            border: 1px solid #e0e0e0;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .offer:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+        .offer h3 {
+            margin-top: 0;
+            font-size: 2em;
+            text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #e0e0e0;
+            margin-bottom: 20px;
+        }
+        .technology-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+        .technology-list li {
+            margin-bottom: 10px;
+            padding-left: 30px;
+            position: relative;
+            background-color: #fefefe;
+            border: 1px solid #f5f5f5;
+            padding: 10px 12px 10px 30px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        .technology-list li:before {
+            content: '\2713'; /* Checkmark */
+            color: #27ae60; /* Green check */
+            position: absolute;
+            left: 8px;
+            font-size: 1.2em;
+            font-weight: bold;
+            line-height: 1;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .technology-list ul { /* Nested list for tech explanations */
+            list-style: disc;
+            padding-left: 15px;
+            margin-top: 5px;
+            font-size: 0.95em;
+            color: #555;
+        }
+        .technology-list ul li {
+            background-color: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            margin-bottom: 3px;
+        }
+        .technology-list ul li:before {
+            content: ''; /* Remove checkmark for nested list */
+            left: auto;
+            top: auto;
+            transform: none;
+        }
+
+        .cost {
+            font-weight: bold;
+            color: #e74c3c;
+            margin-top: 15px;
+            display: block;
+            font-size: 1.2em;
+            text-align: right;
+            padding-top: 8px;
+            border-top: 1px dashed #eee;
+        }
+        .cost strong {
+            color: #c0392b;
+            font-size: 1.1em;
+        }
+
+        .mermaid {
+            text-align: center;
+            margin: 15px auto;
+        }
+
+        #abm-workflow .mermaid {
+            font-size: 1.2em; /* Yazı boyutunu artır */
+            max-width: 1200px; /* Şemanın maksimum genişliğini ayarla */
+        }
+
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden; /* Ensures border-radius applies to children */
+        }
+        .pricing-table th, .pricing-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        .pricing-table th {
+            background-color: #eef4f9;
+            color: #2c3e50;
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+        .pricing-table td {
+            background-color: #ffffff;
+        }
+        .pricing-table tbody tr:nth-child(odd) {
+            background-color: #fdfdfd;
+        }
+        .pricing-table tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 35px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #777;
+            font-size: 0.95em;
+        }
+
+        .email-sequence {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        .email-card {
+            background-color: #ffffff;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid #f0f0f0;
+        }
+        .email-card h5 {
+            color: #2980b9;
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 1.2em;
+        }
+        .email-body {
+            font-size: 0.95em;
+            color: #555;
+            line-height: 1.2; /* Adjusted for maximum compactness */
+            white-space: pre-wrap; /* Preserve line breaks and spaces */
+            word-wrap: break-word; /* Break long words */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>359Growth</h1>
+        <p class="hero-tagline"><strong>Fast, scalable, hyper-personalized outreach with guaranteed success.</strong></p>
+
+        <section id="offers">
+            <h2>What We Do</h2>
+
+            <div class="section">
+                <h4>AI-Powered Personalized Outreach</h4>
+                <p>Instead of sending generic cold emails, we use AI to deeply analyze each target company — their website, messaging, and product focus. From that insight, we craft outreach that feels <span style="font-weight: bold; color: #2980b9;">relevant and timely</span>, so your message stands out.</p>
+                <h5>What this means for you:</h5>
+                <ul>
+                    <li><strong>Company-level insights</strong> – scanning websites for positioning and needs.</li>
+                    <li><strong>Tailored messaging</strong> – every email reflects that company’s reality.</li>
+                    <li><strong>Higher response rates</strong> – because prospects feel you’ve done the homework.</li>
+                    <li><strong>Efficient scaling</strong> – AI enables personalization at scale without losing relevance.</li>
+                </ul>
+                <p><strong>End result:</strong> <span style="font-weight: bold; color: #2980b9;">More conversations and opportunities</span> with the right companies.</p>
+            </div>
+
+            <div class="section">
+                <h4>359 Go To Market vs Cold Email Agencies</h4>
+                <table class="pricing-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>359 Go To Market</th>
+                            <th>Traditional Cold Email Agencies</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Targeting & Personalization</strong></td>
+                            <td>Hyper-personalized, AI-driven insights on company-specific pain points. Targets key decision-makers with tailored messaging based on real-time business signals (hirings, investments, news).</td>
+                            <td>Generic or light personalization based on basic firmographics (industry, company size). Messages often lack depth and relevance to individual prospect's context.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Engagement Strategy</strong></td>
+                            <td>Multi-channel sequences (email, LinkedIn, calls) with highly relevant content. Focus on building rapport and demonstrating specific value from the first touch.</td>
+                            <td>Primarily email-based, high-volume outreach. Generic templates and mass sends prioritize quantity over quality of engagement.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Lead Quality & Conversion</strong></td>
+                            <td>Focus on delivering qualified meetings and opportunities with high-propensity accounts. Higher conversion rates due to deep personalization and strategic engagement.</td>
+                            <td>Generates a high volume of responses, but often with lower qualification rates. Many meetings result in "no-shows" or unqualified leads due to lack of pre-qualification.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pricing Model</strong></td>
+                            <td>Performance-based: reduced monthly fee until agreed-upon targets (e.g., qualified meetings) are met, then standard fee. Investment tied directly to tangible results.</td>
+                            <td>Often fixed monthly retainers or per-email costs, regardless of actual qualified meetings or opportunities generated. Client bears more risk.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Deliverability & Reputation</strong></td>
+                            <td>Advanced warm-up, email verification, and reputation management ensures high inbox placement. AI-driven personalization boosts engagement, signaling legitimacy to ESPs.</td>
+                            <td>High-volume sending often leads to spam folder placement, damaged sender reputation, and lower open rates. Lack of deep personalization can trigger spam filters.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Scalability & Efficiency</strong></td>
+                            <td>AI-powered infrastructure allows for hyper-personalization at scale without sacrificing relevance. Focus on efficient resource allocation for optimal outcomes.</td>
+                            <td>Scaling often means more generic emails, further reducing personalization and engagement. Manual personalization is labor-intensive and not scalable.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="guarantees" class="section">
+            <h2>Our Guarantees</h2>
+            <p>We are confident in our ability to deliver results. Our commitment to your success is reflected in our transparent pricing model: <strong>we do not charge the full service fee until we achieve mutually agreed-upon performance metrics (e.g., a specific number of qualified meetings or offers). If these targets are not met, the remaining balance of the full service fee will not be collected.</strong> This ensures that your investment is directly tied to tangible outcomes, aligning our goals with yours.</p>
+            <p>Our success is your success. We work diligently to secure meetings and opportunities, and only once these are delivered do we collect the full service fee.</p>
+        </section>
+
+        
+
+        <section id="email-sequence-examples" class="section">
+            <h2>Email Sequence Examples</h2>
+            <div class="offer" id="offer2">
+                <h3>AI-Powered Personalized Outreach</h3>
+                <h4>Email Sequence 1 - Coniwi:</h4>
+                <div class="email-sequence">
+                    <div class="email-card">
+                        <h5>Email 1 – First Touch (Personal + Sample Offer)</h5>
+                        <p><strong>Subject:</strong> Scaling Gizmo vs Rexona & Old Spice</p>
+                        <div class="email-body">
+                            <p>Hi Hakan,</p>
+                            <p>Noticed you’re leading both 1863 Boğaziçi as President and Coniwi as CEO — impressive to balance community leadership while scaling a consumer brand.</p>
+                            <p>What I found digging into Gizmo’nun koltuk altı roll-on’u is that you’re already holding ground against Rexona and Old Spice — but current sales data suggests there’s +25% revenue growth to be unlocked.</p>
+                            <p>Would it be worth chatting if we guarantee revenue growth with at least the same profitability as now? We don’t get paid if we can’t hit the target — zero risk on your side.</p>
+                            <p>Best,<br/>[Your Name]</p>
+                        </div>
+                    </div>
+
+                    <div class="email-card">
+                        <h5>Email 2 – Pain + Bridge</h5>
+                        <p><strong>Subject:</strong> The 2 gaps holding Gizmo back on Amazon</p>
+                        <div class="email-body">
+                            <p>Hi Hakan,</p>
+                            <p>Looking deeper into Gizmo’s Amazon setup, the missed revenue isn’t from product quality, it’s from campaign execution:</p>
+                            <ul>
+                                <li>High-intent organic keywords (the ones actually driving purchases) aren’t being targeted for ranking defense — which lets competitors win.</li>
+                                <li>Sponsored Brand (SB) campaigns are underutilized — meaning brand awareness is capped, even though SB is the cheapest way to expand share.</li>
+                            </ul>
+                            <p>Most agencies blast broad keywords and hope for conversions. Instead, we start by locking down organic conversion keywords, then scale with SB to lift awareness — that’s how we get predictable uplifts without burning margin.</p>
+                            <p>Should I map out how this could look specifically for Gizmo?</p>
+                            <p>Best,<br/>[Your Name]</p>
+                        </div>
+                    </div>
+
+                    <div class="email-card">
+                        <h5>Email 3 – Soft CTA + Differentiation</h5>
+                        <p><strong>Subject:</strong> Why we don’t use Amazon “tools”</p>
+                        <div class="email-body">
+                            <p>Hi Hakan,</p>
+                            <p>I also saw your repost on how “Amazon tools are garbage.” Totally agree. </p>
+                            <p>To clarify — we don’t rely on the Amazon tools you called “garbage.” Instead, we run a lean tech stack + SOP sheets that show exactly how we structure campaigns for ranking, keyword defense, and awareness lift.</p>
+                            <p>If you’d like, I can send over:</p>
+                            <ul>
+                                <li>Why we deliberately don’t use certain Amazon tools,</li>
+                                <li>The workflows we run instead (our SOP sheet),</li>
+                                <li>And how we uncover the ad strategies of Old Spice and your other competitors.</li>
+                            </ul>
+                            <p>No strings attached — just so you can see our thinking. Would that be useful for you?</p>
+                            <p>Best,<br/>[Your Name]</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="email-logic" class="section">
+            <h2>Why Each Line is Written This Way & Core Logic</h2>
+            <h3>Core Logic Across the Sequence</h3>
+            <ul>
+                <li><strong>Personalization:</strong> Role titles, his repost, and Gizmo product → prove homework.</li>
+                <li><strong>Specificity:</strong> Competitor names + +25% revenue figure → believable, not fluffy.</li>
+                <li><strong>Pattern-interrupt subjects:</strong> Short, curiosity-driven, not generic (“Scaling Gizmo vs Rexona”).</li>
+                <li><strong>Risk reversal:</strong> “We don’t get paid…” removes CEO’s biggest objection.</li>
+                <li><strong>Scannability:</strong> 2–3 bullets per email → easy for exec eyes.</li>
+            </ul>
+            
+            <h4>Email 1</h4>
+            <p><strong>Subject:</strong> Scaling Gizmo vs Rexona & Old Spice</p>
+            <p><strong>Logic:</strong> Gizmo directly against known competitors → creates brutal curiosity.</p>
+            <h5>Body highlights:</h5>
+            <ul>
+                <li>Role reference (“President + CEO”) → respect + credibility + I studied you</li>
+                <li>“+25% revenue” → specific upside, feels real.</li>
+                <li>Hard CTA: Worth chatting > Definitely it's for this guarantee “We don’t get paid if we can’t hit target” → risk-free, margin-safe.</li>
+            </ul>
+
+            <h4>Email 2</h4>
+            <p><strong>Subject:</strong> The 2 gaps holding Gizmo back on Amazon</p>
+            <p><strong>Logic:</strong> Numbered subject = scannable; “holding back” = loss aversion.</p>
+            <h5>Body highlights:</h5>
+            <ul>
+                <li>Pain 1: Not defending organic conversion keywords.</li>
+                <li>Pain 2: Underusing Sponsored Brands for awareness.</li>
+                <li>Bridge: Contrast “agencies spray keywords” vs “we structure defense first.”</li>
+                <li>CTA: “Should I map out how this looks for Gizmo?” → light, easy yes. Send an explanatory Loom carrying a meeting CTA and dial after the Loom view.</li>
+            </ul>
+
+            <h4>Email 3</h4>
+            <p><strong>Subject:</strong> Why we don’t use Amazon ‘tools’</p>
+            <p><strong>Logic:</strong> Mirrors his language, sets curiosity (“why?”).</p>
+            <h5>Body highlights:</h5>
+            <ul>
+                <li>Align: “We don’t use the tools you dislike.”</li>
+                <li>Differentiation: Lean tech stack + SOP sheets.</li>
+                <li>Offer: Send SOP + explain how it applies to Gizmo.</li>
+                <li>Soft CTA: “Would that be useful?” → no pressure, but opens door. Send an SOP carrying a meeting link > dial/email 2-3 days later. </li>
+            </ul>
+        </section>
+
+        <section id="enrichments" class="section">
+            <h2>Enrichments for Higher Sales Readiness</h2>
+            <ul>
+                <li><strong>Email Verification:</strong> We verify all email addresses to significantly decrease bounce rates and prevent lost leads, ensuring your message reaches valid inboxes.</li>
+                <li><strong>Contact Person Company & Career Data:</strong> In-depth research into the contact person's current and past companies and career trajectory helps us tailor messages to their professional experience and interests.</li>
+                <li><strong>Contact Person Latest Comments, Likes, and Posts:</strong> Analyzing recent social media activity (LinkedIn, etc.) allows us to identify pain points, recent interests, and potential sales angles for highly relevant outreach.</li>
+                <li><strong>Contact Person Amazon Best Seller Status:</strong> For relevant products, identifying if the contact person is associated with an Amazon Best Seller provides valuable insight into their success and potential needs.</li>
+                <li><strong>Product's Competitors:</strong> Understanding the product's competitive landscape allows us to position your offering effectively and highlight key differentiators.</li>
+                <li><strong>Product's Areas to Improve:</strong> Identifying potential weaknesses or areas for improvement in the prospect's product helps us frame our solution as a direct answer to their challenges.</li>
+            </ul>
+            <p>The more data points we enrich, the higher the sales readiness of each lead. This deep personalization significantly contributes to increased <strong>sales rates</strong>, not just meeting rates, by ensuring your outreach is incredibly relevant and impactful from the first touch.</p>
+        </section>
+
+        <section id="email-deliverability" class="section">
+            <h2>Why Our Emails Don't Land in Spam</h2>
+            <p>Email deliverability is crucial for successful outreach. We employ several key strategies and technologies to ensure your emails reach the inbox and maintain a strong sender reputation:</p>
+            <ul>
+                <li><strong>Email Warm-up:</strong> New email accounts are gradually "warmed up" by sending a low volume of emails initially and slowly increasing it over time. This process builds trust with email service providers, signaling that the emails are legitimate and not spam.</li>
+                <li><strong>Email Verification (FullEnrich):</strong> Before sending, all email addresses are meticulously verified using tools like FullEnrich. This ensures that we are sending emails to valid and active inboxes, drastically reducing bounce rates and protecting your sender reputation. Sending to invalid addresses can severely damage your domain's reputation and lead to emails being marked as spam.</li>
+                <li><strong>Advanced Personalization (Clay & Custom AI):</strong> Especially in our advanced offer, we leverage AI-powered personalization through platforms like Clay and our custom AI for the Russia market. Sending highly personalized and relevant emails significantly increases engagement and reduces the likelihood of being flagged as spam, as recipients are more likely to open and interact with content tailored to them.</li>
+                <li><strong>Reputation Management (Instantly):</strong> Our email sending platforms like Instantly are configured to manage sending volume and frequency effectively across multiple accounts and domains. This distributed sending strategy, combined with continuous monitoring, helps maintain a healthy sender score.</li>
+                <li><strong>USA IP Usage:</strong> We utilize USA-based IP addresses for sending emails. This practice enhances deliverability and reduces the likelihood of emails being flagged as spam, as USA IPs are generally considered more trustworthy by email service providers.</li>
+                <li><strong>Highly Targeted Lead Lists & Content Alignment:</strong> Our lead lists are meticulously curated to ensure they consist of highly targeted prospects whose profiles align perfectly with the content of our emails (Ideal Customer Profile - ICP alignment). This relevance drastically increases engagement rates and signals to email providers that our communications are valuable, not spam.</li>
+            </ul>
+            <p>By combining these strategies, we ensure high deliverability rates, allowing your messages to consistently reach your target audience's inboxes.</p>
+        </section>
+
+        <section id="pricing-summary" class="section">
+            <h2>Our Pricing at a Glance</h2>
+            <p>Our commitment to your success is reflected in our flexible pricing model, ensuring you pay for results. <strong>Pricing will vary based on the volume of outreach and the level of personalization required for your campaigns.</strong> Our goal is to align our success with yours, ensuring that you only pay additional fees when our system delivers tangible results.</p>
+        </section>
+
+        <footer>
+            <p>&copy; 2024 359Growth. All Rights Reserved.</p>
+        </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</body>
+</html> 
